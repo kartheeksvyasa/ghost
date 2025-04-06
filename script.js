@@ -22,23 +22,49 @@ document.getElementById('micButton').addEventListener('click', function() {
 });
 
 function respondToUser (userMessage) {
-    const ghostResponses = [
-        "Boo! Did you call me?",
-        "I am here, listening...",
-        "The spirits are restless tonight.",
-        "Can you hear me?",
-        "I have a message for you...",
-        "Leave while you still can!",
-        "I see you... and I want to play.",
-        "Your time is running out..."
-    ];
+    const lowerCaseMessage = userMessage.toLowerCase();
+    let ghostResponse = "I don't understand...";
 
-    const randomResponse = ghostResponses[Math.floor(Math.random() * ghostResponses.length)];
-    document.getElementById('response').innerText += `\nGhost says: ${randomResponse}`;
+    // Simple keyword-based responses
+    if (lowerCaseMessage.includes("hello") || lowerCaseMessage.includes("hi")) {
+        ghostResponse = "Hello, mortal! What do you seek?";
+    } else if (lowerCaseMessage.includes("who are you")) {
+        ghostResponse = "I am a spirit from the beyond...";
+    } else if (lowerCaseMessage.includes("help")) {
+        ghostResponse = "Help is a tricky thing in the afterlife...";
+    } else if (lowerCaseMessage.includes("scary") || lowerCaseMessage.includes("fear")) {
+        ghostResponse = "Fear is what keeps the living awake at night...";
+    } else if (lowerCaseMessage.includes("tell me a secret")) {
+        ghostResponse = "The walls have ears, and they whisper your secrets...";
+    } else if (lowerCaseMessage.includes("goodbye") || lowerCaseMessage.includes("bye")) {
+        ghostResponse = "Until we meet again in the shadows...";
+    } else if (lowerCaseMessage.includes("what is your name")) {
+        ghostResponse = "I am known by many names, but you may call me the Whispering Shadow.";
+    } else if (lowerCaseMessage.includes("are you real")) {
+        ghostResponse = "Real is a matter of perspective... I exist in the shadows.";
+    } else if (lowerCaseMessage.includes("show yourself")) {
+        ghostResponse = "I am always here, lurking in the dark corners of your mind...";
+    }
+
+    // Display and speak the ghost's response
+    document.getElementById('response').innerText += `\nGhost says: ${ghostResponse}`;
 
     // Speech synthesis
-    const utterance = new SpeechSynthesisUtterance(randomResponse);
-    utterance.pitch = 1.2; // Adjust pitch for a ghostly effect
-    utterance.rate = 1; // Normal speed
+    const utterance = new SpeechSynthesisUtterance(ghostResponse);
+    utterance.pitch = 1.5; // Adjust pitch for a ghostly effect
+    utterance.rate = 0.9; // Slower speed for a more eerie effect
+    utterance.voice = getGhostVoice(); // Get a ghostly voice
     window.speechSynthesis.speak(utterance);
 }
+
+function getGhostVoice() {
+    const voices = window.speechSynthesis.getVoices();
+    // You can choose a specific voice by name or characteristics
+    // For example, you might want to select a voice that sounds more eerie
+    return voices.find(voice => voice.name.includes('Google US English')) || voices[0]; // Fallback to the first voice
+}
+
+// Load voices when they are available
+window.speechSynthesis.onvoiceschanged = function() {
+    getGhostVoice();
+};
