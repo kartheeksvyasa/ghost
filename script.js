@@ -54,7 +54,7 @@ function respondToUser (userMessage) {
     // Speech synthesis
     const utterance = new SpeechSynthesisUtterance(ghostResponse);
     utterance.pitch = 1.7; // Adjust pitch for a ghostly effect
-    utterance.rate = 0.9; // Slower speed for a more eerie effect
+    utterance.rate = 0.8; // Slower speed for a more eerie effect
     utterance.voice = getGhostVoice(); // Get a ghostly voice
     window.speechSynthesis.speak(utterance);
 }
