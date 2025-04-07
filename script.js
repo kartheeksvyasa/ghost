@@ -44,6 +44,8 @@ function respondToUser (userMessage) {
         ghostResponse = "Real is a matter of perspective... I exist in the shadows.";
     } else if (lowerCaseMessage.includes("show yourself")) {
         ghostResponse = "I am always here, lurking in the dark corners of your mind...";
+    }else if (lowerCaseMessage.includes("gaandu")) {
+        ghostResponse = "thu gaandu , tera bhap gaandu tere maa gaandu ";
     }
 
     // Display and speak the ghost's response
