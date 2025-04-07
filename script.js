@@ -23,7 +23,7 @@ document.getElementById('micButton').addEventListener('click', function() {
 
 function respondToUser (userMessage) {
     const lowerCaseMessage = userMessage.toLowerCase();
-    let ghostResponse = "I don't understand...";
+    let ghostResponse = "banchoth bakchodhi math kar, baall lavadeke baaall...";
 
     // Simple keyword-based responses
     if (lowerCaseMessage.includes("hello") || lowerCaseMessage.includes("hi")) {
